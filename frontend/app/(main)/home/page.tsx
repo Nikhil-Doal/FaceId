@@ -257,6 +257,9 @@ export default function HomePage() {
           </p>
         </div>
         <div className="flex gap-4">
+          <Link href="/people" className="rounded-full px-6 py-2 text-white border border-white/30 hover:bg-white/10 transition font-serif">
+            👥 View People
+          </Link>
           <Link href="/add" className="rounded-full px-6 py-2 bg-white text-black hover:bg-white/80 transition font-medium font-serif">
             + Add Person
           </Link>
@@ -280,13 +283,6 @@ export default function HomePage() {
                 style={{ objectFit: 'cover' }}
               />
               <canvas ref={canvasRef} className="hidden" />
-
-              {/* {isScanning && (
-                <div className="absolute top-4 left-4 flex items-center gap-2 bg-green-400/20 border border-green-400/50 rounded-full px-3 py-1">
-                  <span className="w-2 h-2 rounded-full bg-green-400" />
-                  <span className="text-green-400 text-xs font-bold">SCANNING</span>
-                </div>
-              )} */}
 
               {/* Bounding boxes overlay */}
               <div className="absolute inset-0">

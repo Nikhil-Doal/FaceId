@@ -25,13 +25,13 @@ CORS(app, resources={
         "origins": ["http://localhost:3000"],
         "methods": ["GET", "POST", "DELETE", "OPTIONS"],
         "allow_headers": ["Content-Type", "Authorization"],
-        "supports_credentials": False
+        "supports_credentials": True
     }
 })
 
-MONGO_URI = os.getenv('MONGO_URI', 'mongodb+srv://admin:admin123@cluster0.4vytqcq.mongodb.net/?appName=Cluster0')
-SECRET_KEY = os.getenv('SECRET_KEY', '25ccd3623c32978479f7da7ebd6bf155cdeb384d25bab7a08ba3ad68e80f40db')
-JWT_SECRET = os.getenv('JWT_SECRET_KEY', 'c23d300bfc777b172f16ad8b815ee8232b0ae7aa07ea28f0727a6688cd3a9856')
+MONGO_URI = os.getenv('MONGO_URI')
+SECRET_KEY = os.getenv('SECRET_KEY')
+JWT_SECRET = os.getenv('JWT_SECRET_KEY')
 
 app.config['SECRET_KEY'] = SECRET_KEY
 
@@ -297,6 +297,7 @@ def add_acquaintance(current_user):
             'relationship': relationship,
             'embedding': embedding,
             'embedding_dim': len(embedding),
+            'image': image_data,  # Store the base64 image
             'added_at': datetime.utcnow()
         }
         
@@ -326,6 +327,7 @@ def get_acquaintances(current_user):
             'id': acq.get('id'),
             'name': acq.get('name'),
             'relationship': acq.get('relationship', ''),
+            'image': acq.get('image'),  # Include the image
             'added_at': acq.get('added_at')
         } for acq in acquaintances]
         return jsonify(result), 200
