@@ -4,6 +4,7 @@ import { useState, useRef, FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Silk from "@/components/Silk";
+import FluidGlass from "@/components/FluidGlass";
 import "./../../globals.css";
 
 export default function AddAcquaintance() {
@@ -139,11 +140,23 @@ export default function AddAcquaintance() {
       <h1 className="font-serif text-7xl mb-6 text-center tracking-tighter text-green-400">
         Add Person
       </h1>
-
       <form
         onSubmit={handleSubmit}
         className="glass w-1/3 p-6 flex flex-col gap-4 text-white rounded-2xl bg-white/10"
       >
+        <FluidGlass
+          mode="bar"
+          barProps={{
+            scale: 0.25,
+            ior: 2,
+            thickness: 3,
+            transmission: 1,
+            roughness: 0,
+            chromaticAberration: 0.1,
+            anisotropy: 0.01
+          }}
+        />
+
         {success && (
           <div className="bg-green-500/20 border border-green-500/50 rounded-full px-4 py-2 text-center">
             ✓ Person added successfully! Redirecting...
